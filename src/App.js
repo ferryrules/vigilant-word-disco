@@ -49,27 +49,31 @@ function App() {
     console.log(words);
   }
 
-  const list = words.map(w=>{
-    return w+" "
-  })
+  const list = words.join(' ')
 
   return (
     <div>
       <br />
       <Form>
         <Form.Group>
-          <p> </p>
-          <Form.Input width={4} fluid label='Max Word Length' placeholder='#' value={maxLen} onChange={e => setMaxLen(e.target.value)}
-            error={ ((maxLen < minlength && maxLen > 0) || maxLen < 0 || (!parseInt(maxLen) && maxLen !== '')) ? {
-              content: `Enter a number greater than ${minlength}`
-            } : null }/>
-          <Form.Input width={4} fluid label='Min Word Length' placeholder='#' value={minLen} onChange={e => setMinLen(e.target.value)}
-            error={ ((minLen > maxlength && minLen > 0) || minLen < 0 || (!parseInt(minLen) && minLen !== '')) ? {
-              content: `Enter a number between ${minlength} - ${maxlength}`
-            } : null}/>
-          <Form.Input width={4} fluid label='Difficulty: 1 (easy) - 10' placeholder='1 - 10' value={diffLvl} onChange={e => setDiffLvl(e.target.value)} error={(diffLvl > 10 || diffLvl < 0 || (!parseInt(diffLvl) && diffLvl !== '')) ? {
-              content: "Enter a level between 1 - 10"
-            } : null }/>
+          <Form.Input width={4} fluid
+            label='Max Word Length' placeholder='#' value={maxLen}
+            onChange={e => setMaxLen(e.target.value)}
+            error={
+              ((maxLen < minlength && maxLen > 0) || maxLen < 0 || (!parseInt(maxLen) && maxLen !== '')) ?
+              {content: `Enter a number greater than ${minlength}`} : null }/>
+          <Form.Input width={4} fluid
+            label='Min Word Length' placeholder='#' value={minLen}
+            onChange={e => setMinLen(e.target.value)}
+            error={
+              ((minLen > maxlength && minLen > 0) || minLen < 0 || (!parseInt(minLen) && minLen !== '')) ?
+              {content: `Enter a number between ${minlength} - ${maxlength}`} : null}/>
+          <Form.Input width={4} fluid
+            label='Difficulty: 1 (easy) - 10' placeholder='1 - 10' value={diffLvl}
+            onChange={e => setDiffLvl(e.target.value)}
+            error={
+              ((diffLvl > 10 || diffLvl < 0) || (!parseInt(diffLvl) && diffLvl !== '')) ?
+              {content: "Enter a level between 1 - 10"} : null }/>
           </Form.Group>
         <Button type='submit' onClick={startGame}>Submit</Button>
       </Form>
