@@ -74,9 +74,31 @@ function App() {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column textAlign='center'>
+          <Modal size='mini' trigger={<Button size='large'>Instructions</Button>}>
+            <Segment.Group>
+              <Segment>
+                <Header as='h1' textAlign='center'>Instructions</Header>
+                <Header as='h5' textAlign='center'>
+                  Guess the word in 6 tries or the game ends.
+                  <br/>
+                  Guess correctly and advance to the next round.
+                  <br/>
+                  Try to reach round 40.
+                </Header>
+              </Segment>
+              <Segment textAlign='center'>
+                <Button size='small' color='green'>Start Game</Button>
+                <Button size='small' color='grey'>Settings</Button>
+              </Segment>
+            </Segment.Group>
+          </Modal>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column textAlign='center'>
           <Modal
             size='mini'
-            trigger={<Button size='medium' onClick={()=>setModal(true)}>
+            trigger={<Button size='small' onClick={()=>setModal(true)}>
                         <Icon name='setting' />Settings</Button>}
             open={modal}
             onClose={()=>setModal(false)}>
@@ -98,7 +120,7 @@ function App() {
                   onChange={e => setDiffLvl(e.target.value)}/>
               </Segment>
               <Segment textAlign='center'>
-                <Button type='submit' value="ferris" onClick={gameSettings} color="purple">Submit</Button>
+                <Button type='submit' onClick={gameSettings} color="purple">Submit</Button>
               </Segment>
             </Segment.Group>
           </Modal>
