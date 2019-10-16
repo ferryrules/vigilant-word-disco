@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import { Form, Button, Modal, Segment, Label, Grid, Icon } from 'semantic-ui-react'
+import { Form, Button, Modal, Segment, Label, Grid, Icon, Header } from 'semantic-ui-react'
 
 const PROXY = 'https://cors-anywhere.herokuapp.com/'
 const API = 'http://app.linkedin-reach.io/words'
@@ -61,27 +61,18 @@ function App() {
       <Grid.Row>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column>
-        </Grid.Column>
         <Grid.Column textAlign='center'>
           <Icon name='user secret' size='massive'/>
           <Icon name='terminal' size='massive'/>
-        </Grid.Column>
-        <Grid.Column>
+          <Header as='h1'></Header>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column>
-        </Grid.Column>
         <Grid.Column textAlign='center'>
           <Button size='massive'>Start Game</Button>
         </Grid.Column>
-        <Grid.Column>
-        </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column>
-        </Grid.Column>
         <Grid.Column textAlign='center'>
           <Modal
             size='mini'
@@ -111,8 +102,6 @@ function App() {
               </Segment>
             </Segment.Group>
           </Modal>
-        </Grid.Column>
-        <Grid.Column>
         </Grid.Column>
       </Grid.Row>
       <br />
