@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import { Form, Button, Modal, Segment, Label } from 'semantic-ui-react'
+import { Form, Button, Modal, Segment, Label, Grid, Icon } from 'semantic-ui-react'
 
 const PROXY = 'https://cors-anywhere.herokuapp.com/'
 const API = 'http://app.linkedin-reach.io/words'
@@ -57,38 +57,67 @@ function App() {
   }
 
   return (
-    <div>
-      <br />
-      <Modal
-        size='mini'
-        trigger={<Button onClick={()=>setModal(true)}>Settings</Button>}
-        open={modal}
-        onClose={()=>setModal(false)}>
-        <Segment.Group>
-          <Segment textAlign='center'>
-            <Label attached='top' color={((maxLen < minlength && maxLen > 0) || maxLen < 0 || (!parseInt(maxLen) && maxLen !== '')) ? 'red' : 'green'}>{`Max Length: Enter a number greater than ${minlength}`}</Label>
-            <Form.Input placeholder='#' value={maxLen}
-              onChange={e => setMaxLen(e.target.value)}/>
-          </Segment>
-          <Segment textAlign='center'>
-            <Label attached='top' color={((minLen > maxlength && minLen > 0) || minLen < 0 || (!parseInt(minLen) && minLen !== '')) ? 'red' : 'teal'}>{`Minimum Length: Enter a number between ${minlength} - ${maxlength}`}</Label>
-            <Form.Input placeholder='#' value={minLen}
-              onChange={e => setMinLen(e.target.value)}/>
-          </Segment>
-          <Segment textAlign='center'>
-            <Label attached='top' color={((diffLvl > 10 || diffLvl < 0) || (!parseInt(diffLvl) && diffLvl !== '')) ? 'red': 'blue'}>Difficulty: Enter a level between 1 (easy) & 10 (hard)</Label>
-            <Form.Input
-              placeholder='1 - 10' value={diffLvl}
-              onChange={e => setDiffLvl(e.target.value)}/>
-          </Segment>
-          <Segment textAlign='center'>
-            <Button type='submit' value="ferris" onClick={gameSettings} color="purple">Submit</Button>
-          </Segment>
-        </Segment.Group>
-      </Modal>
+    <Grid padded columns='equal'>
+      <Grid.Row>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+        </Grid.Column>
+        <Grid.Column textAlign='center'>
+          <Icon name='user secret' size='massive'/>
+          <Icon name='terminal' size='massive'/>
+        </Grid.Column>
+        <Grid.Column>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+        </Grid.Column>
+        <Grid.Column textAlign='center'>
+          <Button size='massive'>Start Game</Button>
+        </Grid.Column>
+        <Grid.Column>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+        </Grid.Column>
+        <Grid.Column textAlign='center'>
+          <Modal
+            size='mini'
+            trigger={<Button size='medium' onClick={()=>setModal(true)}>
+                        <Icon name='setting' />Settings</Button>}
+            open={modal}
+            onClose={()=>setModal(false)}>
+            <Segment.Group>
+              <Segment textAlign='center'>
+                <Label attached='top' color={((maxLen < minlength && maxLen > 0) || maxLen < 0 || (!parseInt(maxLen) && maxLen !== '')) ? 'red' : 'green'}>{`Max Length: Enter a number greater than ${minlength}`}</Label>
+                <Form.Input placeholder='#' value={maxLen}
+                  onChange={e => setMaxLen(e.target.value)}/>
+              </Segment>
+              <Segment textAlign='center'>
+                <Label attached='top' color={((minLen > maxlength && minLen > 0) || minLen < 0 || (!parseInt(minLen) && minLen !== '')) ? 'red' : 'teal'}>{`Minimum Length: Enter a number between ${minlength} - ${maxlength}`}</Label>
+                <Form.Input placeholder='#' value={minLen}
+                  onChange={e => setMinLen(e.target.value)}/>
+              </Segment>
+              <Segment textAlign='center'>
+                <Label attached='top' color={((diffLvl > 10 || diffLvl < 0) || (!parseInt(diffLvl) && diffLvl !== '')) ? 'red': 'blue'}>Difficulty: Enter a level between 1 (easy) & 10 (hard)</Label>
+                <Form.Input
+                  placeholder='1 - 10' value={diffLvl}
+                  onChange={e => setDiffLvl(e.target.value)}/>
+              </Segment>
+              <Segment textAlign='center'>
+                <Button type='submit' value="ferris" onClick={gameSettings} color="purple">Submit</Button>
+              </Segment>
+            </Segment.Group>
+          </Modal>
+        </Grid.Column>
+        <Grid.Column>
+        </Grid.Column>
+      </Grid.Row>
       <br />
       {gameWords}
-    </div>
+    </Grid>
   )
 }
 
