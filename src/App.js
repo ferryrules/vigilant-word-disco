@@ -88,7 +88,7 @@ function App() {
               </Segment>
               <Segment textAlign='center'>
                 <Button size='small' color='green'>Start Game</Button>
-                <Button size='small' color='grey'>Settings</Button>
+                <Button size='small' color='grey' onClick={()=>setModal(true)}>Settings</Button>
               </Segment>
             </Segment.Group>
           </Modal>
