@@ -1,5 +1,5 @@
 import React, {useState, Fragment} from 'react';
-import { Grid, Header, Form, Button, Label } from 'semantic-ui-react'
+import { Grid, Header, Form, Button } from 'semantic-ui-react'
 
 function GamePlay(props) {
   const { allWords, setLoseGame } = props
@@ -8,12 +8,13 @@ function GamePlay(props) {
   const [goodGuess, setGoodGuess] = useState([])
   const [badGuess, setBadGuess] = useState([])
 
-  const [winLvl, setWinLvl] = useState(false)
+  const [winLvl, setWinLvl] = useState(1)
 
-  let level = 1
+  let level = winLvl
   const thisLvl = allWords[level-1].split('')
   const uniqW = [...new Set(thisLvl)]
   const uniqG = [...new Set(goodGuess)]
+  const uniqB = [...new Set(badGuess)]
   const thisWord = thisLvl.map(w=>{
     return (
       <Grid.Column width={1} textAlign='center'>
@@ -23,53 +24,59 @@ function GamePlay(props) {
   })
 
   const myGuess = e => {
-    if (allWords[level-1].includes(e)) {
+    if (allWords[winLvl-1].includes(e)) {
       setGoodGuess([...goodGuess, e])
     } else {
       setBadGuess([...badGuess, e.toUpperCase()])
     }
-    if (badGuess.length === 6) {
-      setLoseGame(true)
-    }
-    if (uniqW.sort().join('') === uniqG.sort().join('')) {
-      setWinLvl(true)
-    }
     setInitGuess('')
   }
 
-
+  const youWin = () => {
+    setBadGuess([])
+    setGoodGuess([])
+    setWinLvl(winLvl+1)
+  }
 
   return (
     <Fragment>
-      <Grid.Row textAlign='center'>
-      <Grid.Column textAlign='center'>
-        <Header as='h1'>LEVEL: {`${level}`}</Header>
-      </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
-        <Grid.Column></Grid.Column>
-        {(uniqW.sort().join('') === uniqG.sort().join('')) ? "You win damnit!" :
-          badGuess.length === 6 ?
-          setLoseGame(true) :
-          thisWord}
-        <Grid.Column></Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
-        <Grid.Column></Grid.Column>
-        <Grid.Column textAlign='center'>
-          <Form>
-            <Form.Group inline>
-              <label>Enter Your Guess</label>
-              <Form.Input value={initGuess} width={1} onChange={(e)=>setInitGuess(e.target.value.toLowerCase())}/>
-            </Form.Group>
-            <Button type='submit' onClick={()=>{myGuess(initGuess)}}>Submit</Button>
-          </Form>
-        </Grid.Column>
-        <Grid.Column></Grid.Column>
-      </Grid.Row>
-      <Header as='h3'>
-        Bad Guesses: {badGuess.join(' ')}
-      </Header>
+      {(uniqW.sort().join('') === uniqG.sort().join('')) ? (
+        <Fragment>
+          You win, damnit!
+          <Button onClick={()=>youWin()}>Continue</Button>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <Grid.Row textAlign='center'>
+            <Grid.Column textAlign='center'>
+              <Header as='h1'>LEVEL: {`${winLvl}`}</Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column></Grid.Column>
+            {uniqB.length === 6 ?
+              setLoseGame(true) :
+              thisWord}
+            <Grid.Column></Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column></Grid.Column>
+            <Grid.Column textAlign='center'>
+              <Form>
+                <Form.Group inline>
+                  <label>Enter Your Guess</label>
+                  <Form.Input value={initGuess} width={4} onChange={(e)=>setInitGuess(e.target.value.toLowerCase())}/>
+                </Form.Group>
+                <Button type='submit' onClick={()=>{myGuess(initGuess)}}>Submit</Button>
+              </Form>
+            </Grid.Column>
+            <Grid.Column></Grid.Column>
+          </Grid.Row>
+          <Header as='h3'>
+            Bad Guesses: {uniqB.join(' ')}
+          </Header>
+        </Fragment>)
+      }
     </Fragment>
   )
 }

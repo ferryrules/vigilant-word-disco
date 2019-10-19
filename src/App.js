@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, Fragment} from 'react';
 import './App.css';
 import TitlePage from './components/titlePage.js';
 import GamePlay from './components/gamePlay.js';
-import { Grid, Icon, Header } from 'semantic-ui-react'
+import { Grid, Icon, Header, Label } from 'semantic-ui-react'
 
 const PROXY = 'https://cors-anywhere.herokuapp.com/'
 const API = 'http://app.linkedin-reach.io/words'
@@ -58,7 +58,14 @@ function App() {
         </Grid.Column>
       </Grid.Row>
       {gamePlay ?
-        loseGame ? "You lose :(" :
+        loseGame ? (
+          <Fragment>
+            <Grid.Column textAlign='center'>
+              <Label color="red">You Lost :(</Label>
+            </Grid.Column>
+            <TitlePage PROXY={PROXY} API={API} diffLvl={diffLvl} setDiffLvl={setDiffLvl} newWords={newWords} setNewWords={setNewWords} minlength={minlength} maxlength={maxlength} setGamePlay={setGamePlay} allWords={setAllWords} stillLoading={stillLoading} fetchErr={fetchErr}/>
+          </Fragment>
+        ) :
         <GamePlay setGamePlay={setGamePlay} allWords={allWords} newWords={newWords} loseGame={loseGame} setLoseGame={setLoseGame} /> :
         <TitlePage PROXY={PROXY} API={API} diffLvl={diffLvl} setDiffLvl={setDiffLvl} newWords={newWords} setNewWords={setNewWords} minlength={minlength} maxlength={maxlength} setGamePlay={setGamePlay} allWords={setAllWords} stillLoading={stillLoading} fetchErr={fetchErr}/>
       }
