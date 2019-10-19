@@ -10,11 +10,19 @@ const API = 'http://app.linkedin-reach.io/words'
 function App() {
   const [allWords, setAllWords] = useState([])
   const [newWords, setNewWords] = useState([])
-  const [gamePlay, setGamePlay] = useState(false)
 
+  const [loseGame, setLoseGame] = useState(false)
+  const [winLvl, setWinLvl] = useState(false)
+
+  const [gamePlay, setGamePlay] = useState(false)
   const [diffLvl, setDiffLvl] = useState(1)
+
   useEffect(() => {
-    fetch(PROXY+API+'?minlength=5&difficulty=2&count=40')
+    fetch(PROXY+API+'?minlength=5&difficulty=2&count=40', {
+      header: {
+        'Accept': 'text/html',
+        'Content-Type': 'text/html'
+      }})
     .then(r=>r.text())
     .then(words=>{
       setAllWords(words.split('\n'))
@@ -31,6 +39,8 @@ function App() {
     }
   })
 
+  const stillLoading = allWords.length === 0 ? 'loading' : null
+
   return (
     <Grid padded columns='equal'>
       <Grid.Row>
@@ -43,8 +53,9 @@ function App() {
         </Grid.Column>
       </Grid.Row>
       {gamePlay ?
-        <GamePlay allWords={allWords} newWords={newWords}/> :
-        <TitlePage PROXY={PROXY} API={API} diffLvl={diffLvl} setDiffLvl={setDiffLvl} newWords={newWords} setNewWords={setNewWords} minlength={minlength} maxlength={maxlength} setGamePlay={setGamePlay} setAllWords={setAllWords} />
+        winLvl ? "You Win!" :
+        <GamePlay setGamePlay={setGamePlay} allWords={allWords} newWords={newWords} winLvl={winLvl} setWinLvl={setWinLvl} loseGame={loseGame} setLoseGame={setLoseGame} /> :
+        <TitlePage PROXY={PROXY} API={API} diffLvl={diffLvl} setDiffLvl={setDiffLvl} newWords={newWords} setNewWords={setNewWords} minlength={minlength} maxlength={maxlength} setGamePlay={setGamePlay} allWords={setAllWords} stillLoading={stillLoading}/>
       }
     </Grid>
   )

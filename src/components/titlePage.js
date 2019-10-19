@@ -2,7 +2,7 @@ import React, {useState, Fragment} from 'react';
 import { Form, Button, Modal, Segment, Label, Grid, Icon, Header } from 'semantic-ui-react'
 
 function TitlePage(props) {
-  const { PROXY, API, diffLvl, setNewWords, newWords, setDiffLvl, setGamePlay } = props
+  const { PROXY, API, diffLvl, setNewWords, newWords, setDiffLvl, setGamePlay, stillLoading } = props
 
   const [modal, setModal] = useState(false)
 
@@ -28,7 +28,7 @@ function TitlePage(props) {
       <br />
       <Grid.Row textAlign='center'>
         <Grid.Column textAlign='center'>
-          <Button size='massive' onClick={()=>setGamePlay(true)}>Start Game</Button>
+          <Button className={`${stillLoading}`} size='massive' onClick={()=>setGamePlay(true)}>Start Game</Button>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
