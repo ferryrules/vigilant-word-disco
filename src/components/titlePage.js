@@ -2,7 +2,7 @@ import React, {useState, Fragment} from 'react';
 import { Form, Button, Modal, Segment, Label, Grid, Icon, Header } from 'semantic-ui-react'
 
 function TitlePage(props) {
-  const { PROXY, API, diffLvl, setNewWords, newWords, setDiffLvl, setGamePlay, stillLoading } = props
+  const { PROXY, API, diffLvl, setNewWords, newWords, setDiffLvl, setGamePlay, stillLoading, fetchErr } = props
 
   const [modal, setModal] = useState(false)
 
@@ -28,7 +28,7 @@ function TitlePage(props) {
       <br />
       <Grid.Row textAlign='center'>
         <Grid.Column textAlign='center'>
-          <Button className={`${stillLoading}`} size='massive' onClick={()=>setGamePlay(true)}>Start Game</Button>
+          <Button className={`${stillLoading}`} size='massive' color='green' onClick={()=>setGamePlay(true)}>{fetchErr ? "Error: Reload" : "Start Game"}</Button>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
@@ -38,9 +38,11 @@ function TitlePage(props) {
               <Segment>
                 <Header as='h1' textAlign='center'>Instructions</Header>
                 <Header as='h5' textAlign='center'>
-                  Guess the word in 6 tries or the game ends.
+                  Guess the word one letter at a time.
                   <br/>
                   Guess correctly and advance to the next round.
+                  <br/>
+                  Guess incorrectly 6 times and lose the game.
                   <br/>
                   Try to reach round 40.
                 </Header>

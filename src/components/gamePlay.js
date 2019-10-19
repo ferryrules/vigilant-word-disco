@@ -1,11 +1,14 @@
 import React, {useState, Fragment} from 'react';
-import { Grid, Header, Form } from 'semantic-ui-react'
+import { Grid, Header, Form, Button, Label } from 'semantic-ui-react'
 
 function GamePlay(props) {
-  const { allWords, setWinLvl } = props
+  const { allWords, setLoseGame } = props
 
+  const [initGuess, setInitGuess] = useState('')
   const [goodGuess, setGoodGuess] = useState([])
   const [badGuess, setBadGuess] = useState([])
+
+  const [winLvl, setWinLvl] = useState(false)
 
   let level = 1
   const thisLvl = allWords[level-1].split('')
@@ -22,13 +25,19 @@ function GamePlay(props) {
   const myGuess = e => {
     if (allWords[level-1].includes(e)) {
       setGoodGuess([...goodGuess, e])
-      if (uniqW.sort().join('') === uniqG.sort().join('')) {
-        setWinLvl(true)
-      }
     } else {
       setBadGuess([...badGuess, e.toUpperCase()])
     }
+    if (badGuess.length === 6) {
+      setLoseGame(true)
+    }
+    if (uniqW.sort().join('') === uniqG.sort().join('')) {
+      setWinLvl(true)
+    }
+    setInitGuess('')
   }
+
+
 
   return (
     <Fragment>
@@ -39,15 +48,24 @@ function GamePlay(props) {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column></Grid.Column>
-        {thisWord}
+        {(uniqW.sort().join('') === uniqG.sort().join('')) ? "You win damnit!" :
+          badGuess.length === 6 ?
+          setLoseGame(true) :
+          thisWord}
         <Grid.Column></Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Form.Field textAlign='center'>
-          <label>Enter Your Guess</label>
-          <input size='mini' onChange={(e)=>myGuess(e.target.value.toLowerCase())} />
-          <button onClick={()=>{}}>Submit</button>
-        </Form.Field>
+        <Grid.Column></Grid.Column>
+        <Grid.Column textAlign='center'>
+          <Form>
+            <Form.Group inline>
+              <label>Enter Your Guess</label>
+              <Form.Input value={initGuess} width={1} onChange={(e)=>setInitGuess(e.target.value.toLowerCase())}/>
+            </Form.Group>
+            <Button type='submit' onClick={()=>{myGuess(initGuess)}}>Submit</Button>
+          </Form>
+        </Grid.Column>
+        <Grid.Column></Grid.Column>
       </Grid.Row>
       <Header as='h3'>
         Bad Guesses: {badGuess.join(' ')}
