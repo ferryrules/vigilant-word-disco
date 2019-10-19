@@ -82,15 +82,19 @@ function GamePlay(props) {
                 <Form.Group inline>
                   <label>Enter Your Guess</label>
                   <Form.Input value={initGuess} width={4} onChange={(e)=>setInitGuess(e.target.value.toLowerCase())}/>
+                  <Button type='submit' onClick={()=>{myGuess(initGuess.split(''))}}>Submit</Button>
                 </Form.Group>
-                <Button type='submit' onClick={()=>{myGuess(initGuess.split(''))}}>Submit</Button>
               </Form>
             </Grid.Column>
             <Grid.Column></Grid.Column>
           </Grid.Row>
-          <Header as='h3'>
-            Bad Guesses: {uniqB.join(' ')}
-          </Header>
+            <Grid.Row>
+              <Grid.Column textAlign='center'>
+                <Header as='h3'>
+                  Bad Guesses: {uniqB.join(' ')}
+                </Header>
+              </Grid.Column>
+          </Grid.Row>
         </Fragment>)
       }
     </Fragment>
