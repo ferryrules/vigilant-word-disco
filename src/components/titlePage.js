@@ -2,7 +2,7 @@ import React, {useState, Fragment} from 'react';
 import { Form, Button, Modal, Segment, Label, Grid, Icon, Header } from 'semantic-ui-react'
 
 function TitlePage(props) {
-  const { PROXY, API, diffLvl, setNewWords, newWords, setDiffLvl, setGamePlay, stillLoading, fetchErr, setLoseGame } = props
+  const { PROXY, API, diffLvl, setAllWords, setDiffLvl, setGamePlay, stillLoading, fetchErr, setLoseGame } = props
 
   const [modal, setModal] = useState(false)
 
@@ -13,17 +13,18 @@ function TitlePage(props) {
     }
   }
 
-  const gameSettings = e => {
+  const gameSettings = async(e) => {
     paramSettings()
     let PARAMETERS = '?' + paramArr.join('&')
-    fetch(PROXY+API+PARAMETERS)
-    .then(r=>r.text())
-    .then(words=>setNewWords(words.split(`\n`)))
+    const text = await fetch(PROXY+API+PARAMETERS)
+      .then(r=>r.text())
+    let newWords = text.split(`\n`)
+    setAllWords(Array.from({length: 40}, () => newWords[Math.floor(Math.random() * newWords.length)]))
     setModal(false)
-    setNewWords(Array.from({length: 40}, () => newWords[Math.floor(Math.random() * newWords.length)]))
   }
 
   const startGame = () => {
+    gameSettings()
     setGamePlay(true)
     setLoseGame(false)
   }
@@ -76,7 +77,7 @@ function TitlePage(props) {
                   onChange={e => setDiffLvl(e.target.value)}/>
               </Segment>
               <Segment textAlign='center'>
-                <Button type='submit' onClick={gameSettings} color="purple">Submit</Button>
+                <Button type='submit' onClick={()=>gameSettings()} color="purple">Submit</Button>
               </Segment>
             </Segment.Group>
           </Modal>

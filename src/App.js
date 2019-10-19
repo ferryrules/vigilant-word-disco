@@ -63,11 +63,11 @@ function App() {
             <Grid.Column textAlign='center'>
               <Label color="red">You Lost :(</Label>
             </Grid.Column>
-            <TitlePage PROXY={PROXY} API={API} diffLvl={diffLvl} setDiffLvl={setDiffLvl} newWords={newWords} setNewWords={setNewWords} minlength={minlength} maxlength={maxlength} setGamePlay={setGamePlay} allWords={setAllWords} stillLoading={stillLoading} fetchErr={fetchErr} setLoseGame={setLoseGame}/>
+            <TitlePage PROXY={PROXY} API={API} diffLvl={diffLvl} setDiffLvl={setDiffLvl} newWords={newWords} setNewWords={setNewWords} minlength={minlength} maxlength={maxlength} setGamePlay={setGamePlay} setAllWords={setAllWords} stillLoading={stillLoading} fetchErr={fetchErr} setLoseGame={setLoseGame}/>
           </Fragment>
         ) :
         <GamePlay setGamePlay={setGamePlay} allWords={allWords} newWords={newWords} loseGame={loseGame} setLoseGame={setLoseGame} /> :
-        <TitlePage PROXY={PROXY} API={API} diffLvl={diffLvl} setDiffLvl={setDiffLvl} newWords={newWords} setNewWords={setNewWords} minlength={minlength} maxlength={maxlength} setGamePlay={setGamePlay} allWords={setAllWords} stillLoading={stillLoading} fetchErr={fetchErr} setLoseGame={setLoseGame}/>
+        <TitlePage PROXY={PROXY} API={API} diffLvl={diffLvl} setDiffLvl={setDiffLvl} newWords={newWords} setNewWords={setNewWords} minlength={minlength} maxlength={maxlength} setGamePlay={setGamePlay} setAllWords={setAllWords} stillLoading={stillLoading} fetchErr={fetchErr} setLoseGame={setLoseGame}/>
       }
     </Grid>
   )

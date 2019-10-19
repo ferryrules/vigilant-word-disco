@@ -45,8 +45,21 @@ function GamePlay(props) {
     <Fragment>
       {(uniqW.sort().join('') === uniqG.sort().join('')) ? (
         <Fragment>
-          You win, damnit!
-          <Button onClick={()=>youWin()}>Continue</Button>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Header as='h3'>You win, damnit!</Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Header as='h6'>{allWords[winLvl-1].toUpperCase()}</Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Button onClick={()=>youWin()}>Continue</Button>
+            </Grid.Column>
+          </Grid.Row>
         </Fragment>
       ) : (
         <Fragment>
