@@ -2,7 +2,7 @@ import React, {useState, Fragment} from 'react';
 import { Form, Button, Modal, Segment, Label, Grid, Icon, Header } from 'semantic-ui-react'
 
 function TitlePage(props) {
-  const { PROXY, API, diffLvl, setNewWords, newWords, setDiffLvl, setGamePlay, stillLoading, fetchErr } = props
+  const { PROXY, API, diffLvl, setNewWords, newWords, setDiffLvl, setGamePlay, stillLoading, fetchErr, setLoseGame } = props
 
   const [modal, setModal] = useState(false)
 
@@ -23,12 +23,17 @@ function TitlePage(props) {
     setNewWords(Array.from({length: 40}, () => newWords[Math.floor(Math.random() * newWords.length)]))
   }
 
+  const startGame = () => {
+    setGamePlay(true)
+    setLoseGame(false)
+  }
+
   return (
     <Fragment>
       <br />
       <Grid.Row textAlign='center'>
         <Grid.Column textAlign='center'>
-          <Button className={`${stillLoading}`} size='massive' color='green' onClick={()=>setGamePlay(true)}>{fetchErr ? "Error: Reload" : "Start Game"}</Button>
+          <Button className={`${stillLoading}`} size='massive' color='green' onClick={()=>startGame()}>{fetchErr ? "Error: Reload" : "Start Game"}</Button>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
@@ -48,7 +53,7 @@ function TitlePage(props) {
                 </Header>
               </Segment>
               <Segment textAlign='center'>
-                <Button size='small' color='green' onClick={()=>setGamePlay(true)}>Start Game</Button>
+                <Button size='small' color='green' onClick={()=>startGame()}>Start Game</Button>
                 <Button size='small' color='grey' onClick={()=>setModal(true)}>Settings</Button>
               </Segment>
             </Segment.Group>
