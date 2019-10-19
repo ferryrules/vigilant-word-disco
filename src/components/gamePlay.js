@@ -24,9 +24,7 @@ function GamePlay(props) {
   })
 
   const myGuess = e => {
-    let arr = e.split('')
-    console.log(arr);
-    debugger
+    let arr = e
     arr.forEach(x=>{
       if (allWords[winLvl-1].includes(x)) {
         setGoodGuess([...goodGuess, x])
@@ -72,7 +70,7 @@ function GamePlay(props) {
                   <label>Enter Your Guess</label>
                   <Form.Input value={initGuess} width={4} onChange={(e)=>setInitGuess(e.target.value.toLowerCase())}/>
                 </Form.Group>
-                <Button type='submit' onClick={()=>{myGuess(initGuess)}}>Submit</Button>
+                <Button type='submit' onClick={()=>{myGuess(initGuess.split(''))}}>Submit</Button>
               </Form>
             </Grid.Column>
             <Grid.Column></Grid.Column>
