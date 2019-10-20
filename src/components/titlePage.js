@@ -1,33 +1,8 @@
-import React, {useState, Fragment} from 'react';
+import React, {Fragment} from 'react';
 import { Form, Button, Modal, Segment, Label, Grid, Icon, Header } from 'semantic-ui-react'
 
 function TitlePage(props) {
-  const { PROXY, API, diffLvl, setAllWords, setDiffLvl, setGamePlay, stillLoading, fetchErr, setLoseGame } = props
-
-  const [modal, setModal] = useState(false)
-
-  let paramArr = []
-  const paramSettings = () => {
-    if (!!diffLvl) {
-      paramArr.push(`difficulty=${diffLvl}`)
-    }
-  }
-
-  const gameSettings = async(e) => {
-    paramSettings()
-    let PARAMETERS = '?' + paramArr.join('&')
-    const text = await fetch(PROXY+API+PARAMETERS)
-      .then(r=>r.text())
-    let newWords = text.split(`\n`)
-    setAllWords(Array.from({length: 40}, () => newWords[Math.floor(Math.random() * newWords.length)]))
-    setModal(false)
-  }
-
-  const startGame = () => {
-    gameSettings()
-    setGamePlay(true)
-    setLoseGame(false)
-  }
+  const { modal, setModal, diffLvl, gameSettings, startGame, setDiffLvl, stillLoading, fetchErr } = props
 
   return (
     <Fragment>

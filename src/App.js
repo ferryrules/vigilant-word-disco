@@ -9,14 +9,11 @@ const API = 'http://app.linkedin-reach.io/words'
 
 function App() {
   const [allWords, setAllWords] = useState([])
-  const [newWords, setNewWords] = useState([])
-
   const [loseGame, setLoseGame] = useState(false)
-
   const [gamePlay, setGamePlay] = useState(false)
   const [diffLvl, setDiffLvl] = useState(2)
-
   const [fetchErr, setFetchErr] = useState(false)
+  const [modal, setModal] = useState(false)
 
   useEffect(() => {
     fetch(PROXY+API+'?minlength=5&difficulty=2&count=40', {mode: 'cors',
@@ -46,6 +43,29 @@ function App() {
   const stillLoading = (allWords.length === 0 && !fetchErr) ?
   'loading' : fetchErr ? 'disabled' : null
 
+  let paramArr = []
+  const paramSettings = () => {
+    if (!!diffLvl) {
+      paramArr.push(`difficulty=${diffLvl}`)
+    }
+  }
+
+  const gameSettings = async(e) => {
+    paramSettings()
+    let PARAMETERS = '?' + paramArr.join('&')
+    const text = await fetch(PROXY+API+PARAMETERS)
+      .then(r=>r.text())
+    let newWords = text.split(`\n`)
+    setAllWords(Array.from({length: 40}, () => newWords[Math.floor(Math.random() * newWords.length)]))
+    setModal(false)
+  }
+
+  const startGame = () => {
+    gameSettings()
+    setGamePlay(true)
+    setLoseGame(false)
+  }
+
   return (
     <Grid padded columns='equal'>
       <Grid.Row>
@@ -63,11 +83,12 @@ function App() {
             <Grid.Column textAlign='center'>
               <Label color="red">You Lost :(</Label>
             </Grid.Column>
-            <TitlePage PROXY={PROXY} API={API} diffLvl={diffLvl} setDiffLvl={setDiffLvl} newWords={newWords} setNewWords={setNewWords} minlength={minlength} maxlength={maxlength} setGamePlay={setGamePlay} setAllWords={setAllWords} stillLoading={stillLoading} fetchErr={fetchErr} setLoseGame={setLoseGame}/>
+            modal, setModal, diffLvl, gameSettings, startGame, setDiffLvl, stillLoading, fetchErr
+            <TitlePage modal={modal} setModal={setModal} gameSettings={gameSettings} startGame={startGame} setDiffLvl={setDiffLvl} stillLoading={stillLoading} fetchErr={fetchErr} />
           </Fragment>
         ) :
-        <GamePlay setGamePlay={setGamePlay} allWords={allWords} newWords={newWords} loseGame={loseGame} setLoseGame={setLoseGame} /> :
-        <TitlePage PROXY={PROXY} API={API} diffLvl={diffLvl} setDiffLvl={setDiffLvl} newWords={newWords} setNewWords={setNewWords} minlength={minlength} maxlength={maxlength} setGamePlay={setGamePlay} setAllWords={setAllWords} stillLoading={stillLoading} fetchErr={fetchErr} setLoseGame={setLoseGame}/>
+        <GamePlay allWords={allWords} setLoseGame={setLoseGame} startGame={startGame}/> :
+        <TitlePage modal={modal} setModal={setModal} gameSettings={gameSettings} startGame={startGame} setDiffLvl={setDiffLvl} stillLoading={stillLoading} fetchErr={fetchErr} />
       }
     </Grid>
   )

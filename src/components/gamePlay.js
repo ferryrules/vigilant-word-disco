@@ -2,7 +2,7 @@ import React, {useState, Fragment} from 'react';
 import { Grid, Header, Form, Button } from 'semantic-ui-react'
 
 function GamePlay(props) {
-  const { allWords, setLoseGame } = props
+  const { allWords, setLoseGame, startGame } = props
 
   const [initGuess, setInitGuess] = useState('')
   const [goodGuess, setGoodGuess] = useState([])
@@ -42,9 +42,8 @@ function GamePlay(props) {
   }
 
   const gameOver = () => {
-    setBadGuess([])
-    setGoodGuess([])
     setWinLvl(1)
+    startGame()
   }
 
   console.log('CHEATER!!!');
