@@ -90,6 +90,7 @@ function GamePlay(props) {
           <Grid.Row textAlign='center'>
             <Grid.Column textAlign='center'>
               <Header as='h1'>LEVEL: {`${winLvl}`}</Header>
+              {woff ? <Header as='h5' color='blue'>W of F enabled. RSTLNE filled in. Hints disabled</Header> : null}
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>

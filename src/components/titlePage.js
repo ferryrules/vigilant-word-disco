@@ -54,14 +54,14 @@ function TitlePage(props) {
                   onChange={e => setDiffLvl(e.target.value)}/>
               </Segment>
               <Segment textAlign='center'>
-                <Label attached='top' color='purple'>WofF Style: Every puzzle begins with 'R S T L N E' filled in for you. Hints will be disabled.</Label>
+                <Label attached='top' color='blue'>WofF Style: Every puzzle begins with 'R S T L N E' filled in for you. Hints will be disabled.</Label>
                 <br/>
                 <br/>
                 <br/>
                 <Checkbox onClick={e => setWoff(true)}/>
               </Segment>
               <Segment textAlign='center'>
-                <Button type='submit' onClick={()=>gameSettings()} color="purple">Submit</Button>
+                <Button type='submit' onClick={()=>gameSettings()}>Submit</Button>
               </Segment>
             </Segment.Group>
           </Modal>
