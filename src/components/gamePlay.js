@@ -9,6 +9,7 @@ function GamePlay(props) {
   const [initGuess, setInitGuess] = useState('')
   const [goodGuess, setGoodGuess] = useState([])
   const [badGuess, setBadGuess] = useState([])
+  const [hints, setHints] = useState(3)
 
   const [winLvl, setWinLvl] = useState(1)
   let level = winLvl
@@ -28,16 +29,11 @@ function GamePlay(props) {
 
   const myGuess = e => {
     let arr = e
-    console.log("e",e);
-    console.log("arr",arr);
-    // debugger
     arr.forEach(x=>{
       if (allWords[winLvl-1].includes(x)) {
         goodGuess.push(x)
-        // return setGoodGuess([...goodGuess, x])
       } else {
         badGuess.push(x.toUpperCase())
-        // return setBadGuess([...badGuess, x.toUpperCase()])
       }
     })
     setInitGuess('')
@@ -47,6 +43,7 @@ function GamePlay(props) {
     setBadGuess([])
     setGoodGuess([])
     setWinLvl(winLvl+1)
+    setHints(hints+1)
   }
 
   const gameOver = () => {
@@ -56,6 +53,18 @@ function GamePlay(props) {
     startGame()
   }
 
+  const myHints = () => {
+    setHints(hints-1)
+    for (var i = 0; i < uniqW.length; i++) {
+      if (!uniqG.includes(uniqW[i])) {
+        console.log(uniqW[i]);
+        return goodGuess.push(uniqW[i])
+      }
+    }
+  }
+
+  const hintButton = hints === 0 ? 'disabled' : null
+  console.log(hints);
   console.log('CHEATER!!!');
   console.log('WE HAVE A CHEATER IN HERE!!!!');
   console.log("eh, it's fine");
@@ -82,17 +91,17 @@ function GamePlay(props) {
             <Grid.Column></Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column></Grid.Column>
+            <Grid.Column width={3}></Grid.Column>
             <Grid.Column textAlign='center'>
               <Form>
                 <Form.Group inline>
                   <label>Enter Your Guess</label>
-                  <Form.Input value={initGuess} width={4} onChange={(e)=>setInitGuess(e.target.value.toLowerCase())}/>
+                  <Form.Input value={initGuess} width={6} onChange={(e)=>setInitGuess(e.target.value.toLowerCase())}/>
                   <Button type='submit' onClick={()=>{myGuess(initGuess.split(''))}}>Submit</Button>
+                  <Button type='submit' className={hintButton} onClick={()=>{myHints()}}>Hint ({hints})</Button>
                 </Form.Group>
               </Form>
             </Grid.Column>
-            <Grid.Column></Grid.Column>
           </Grid.Row>
             <Grid.Row>
               <Grid.Column textAlign='center'>
