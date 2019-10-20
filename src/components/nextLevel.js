@@ -3,6 +3,7 @@ import { Grid, Header, Button } from 'semantic-ui-react'
 
 function NextLevel(props) {
   const {allWords, winLvl, youWin} = props
+
   return (
     <Fragment>
       <Grid.Row>
@@ -12,7 +13,9 @@ function NextLevel(props) {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column textAlign='center'>
-          <Header as='h6'>The Word Was: {allWords[winLvl-1].toUpperCase()}</Header>
+          <Header as='h5'>
+            The Word Was: {allWords[winLvl-1].toUpperCase()}
+          </Header>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
