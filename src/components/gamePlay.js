@@ -42,7 +42,7 @@ function GamePlay(props) {
   }
 
   const gameOver = () => {
-    uess([])
+    setBadGuess([])
     setGoodGuess([])
     setWinLvl(1)
   }
@@ -51,7 +51,7 @@ function GamePlay(props) {
   console.log('WE HAVE A CHEATER IN HERE!!!!');
   console.log("eh, it's fine");
   console.log('.....');
-  console.log('its ', allWords[winLvl-1]);
+  console.log("it's " , allWords[winLvl-1]);
   return (
     <Fragment>
       {(uniqW.sort().join('') === uniqG.sort().join('')) ? (
