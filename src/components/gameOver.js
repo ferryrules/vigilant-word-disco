@@ -1,20 +1,12 @@
 import React, {Fragment} from 'react';
+import YouWin from './youWin.js'
 import { Grid, Header, Button } from 'semantic-ui-react'
 
 function GameOver(props) {
   const { allWords, winLvl, gameOver } = props
   return(
     <Fragment>
-      <Grid.Row>
-        <Grid.Column textAlign='center'>
-          <Header as='h3'>You win, damnit!</Header>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
-        <Grid.Column textAlign='center'>
-          <Header as='h6'>The Word Was: {allWords[winLvl-1].toUpperCase()}</Header>
-        </Grid.Column>
-      </Grid.Row>
+      <YouWin allWords={allWords} winLvl={winLvl} />
       <Grid.Row>
         <Grid.Column textAlign='center'>
           <img alt="you win disco" src="http://delinear.info/images/th3n04h/discoball%202%20NTP.gif" />
