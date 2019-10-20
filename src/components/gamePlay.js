@@ -41,6 +41,11 @@ function GamePlay(props) {
     setWinLvl(winLvl+1)
   }
 
+  console.log('CHEATER!!!');
+  console.log('WE HAVE A CHEATER IN HERE!!!!');
+  console.log("eh, it's fine");
+  console.log('.....');
+  console.log('its ', allWords[winLvl-1]);
   return (
     <Fragment>
       {(uniqW.sort().join('') === uniqG.sort().join('')) ? (
