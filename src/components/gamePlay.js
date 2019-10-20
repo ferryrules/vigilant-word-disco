@@ -73,17 +73,17 @@ function GamePlay(props) {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column textAlign='center'>
-              <Header as='h2'>There is no prize though but,</Header>
+              <Header as='h2'>Sorry, There is no prize though.</Header>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <Grid.Column textAlign='center'>
-              <Header as='h3'>You clearly don't need anything.</Header>
+              <Header as='h3'>But you clearly don't need anything.</Header>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <Grid.Column textAlign='center'>
-              <Header as='h4'>I mean, I couldn't do it.</Header>
+              <Header as='h4'>I mean, I couldn't do it,</Header>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
