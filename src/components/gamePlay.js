@@ -41,6 +41,12 @@ function GamePlay(props) {
     setWinLvl(winLvl+1)
   }
 
+  const gameOver = () => {
+    uess([])
+    setGoodGuess([])
+    setWinLvl(1)
+  }
+
   console.log('CHEATER!!!');
   console.log('WE HAVE A CHEATER IN HERE!!!!');
   console.log("eh, it's fine");
@@ -63,6 +69,24 @@ function GamePlay(props) {
           <Grid.Row>
             <Grid.Column textAlign='center'>
               <Button onClick={()=>youWin()}>Continue</Button>
+            </Grid.Column>
+          </Grid.Row>
+        </Fragment>
+      ) : winLvl === 5 ? (
+        <Fragment>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Header as='h3'>You win, damnit!</Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Header as='h6'>{allWords[winLvl-1].toUpperCase()}</Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Button onClick={()=>gameOver()}>Maybe You Should Go Outside?</Button>
             </Grid.Column>
           </Grid.Row>
         </Fragment>
