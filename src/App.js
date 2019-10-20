@@ -86,7 +86,7 @@ function App() {
             <TitlePage modal={modal} setModal={setModal} gameSettings={gameSettings} startGame={startGame} setDiffLvl={setDiffLvl} stillLoading={stillLoading} fetchErr={fetchErr} />
           </Fragment>
         ) :
-        <GamePlay allWords={allWords} setLoseGame={setLoseGame} startGame={startGame}/> :
+        <GamePlay allWords={allWords} setLoseGame={setLoseGame} startGame={startGame} /> :
         <TitlePage modal={modal} setModal={setModal} gameSettings={gameSettings} startGame={startGame} setDiffLvl={setDiffLvl} stillLoading={stillLoading} fetchErr={fetchErr} />
       }
     </Grid>

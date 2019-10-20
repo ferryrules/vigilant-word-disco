@@ -4,7 +4,7 @@ import NextLevel from './nextLevel.js';
 import { Grid, Header, Form, Button } from 'semantic-ui-react'
 
 function GamePlay(props) {
-  const { allWords, setLoseGame, startGame } = props
+  const { allWords, setLoseGame, startGame} = props
 
   const [initGuess, setInitGuess] = useState('')
   const [goodGuess, setGoodGuess] = useState([])
@@ -48,6 +48,7 @@ function GamePlay(props) {
 
   const gameOver = () => {
     setWinLvl(1)
+    setHints(3)
     setBadGuess([])
     setGoodGuess([])
     startGame()
