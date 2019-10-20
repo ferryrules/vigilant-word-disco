@@ -54,7 +54,55 @@ function GamePlay(props) {
   console.log("it's " , allWords[winLvl-1]);
   return (
     <Fragment>
-      {(uniqW.sort().join('') === uniqG.sort().join('')) ? (
+      {(uniqW.sort().join('') === uniqG.sort().join('')) ? winLvl === 3 ? (
+        <Fragment>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Header as='h3'>You win, damnit!</Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Header as='h6'>{allWords[winLvl-1].toUpperCase()}</Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Header as='h1'>Oh Snap! You Won the Game!</Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Header as='h2'>There is no prize though but,</Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Header as='h3'>You clearly don't need anything.</Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Header as='h4'>I mean, I couldn't do it.</Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Header as='h5'>And I built this thing.</Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Header as='h6'>But I also built in a cheat ;)</Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Button onClick={()=>gameOver()}>Play Again?</Button>
+            </Grid.Column>
+          </Grid.Row>
+        </Fragment>
+      ) : (
         <Fragment>
           <Grid.Row>
             <Grid.Column textAlign='center'>
@@ -69,24 +117,6 @@ function GamePlay(props) {
           <Grid.Row>
             <Grid.Column textAlign='center'>
               <Button onClick={()=>youWin()}>Continue</Button>
-            </Grid.Column>
-          </Grid.Row>
-        </Fragment>
-      ) : winLvl === 5 ? (
-        <Fragment>
-          <Grid.Row>
-            <Grid.Column textAlign='center'>
-              <Header as='h3'>You win, damnit!</Header>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column textAlign='center'>
-              <Header as='h6'>{allWords[winLvl-1].toUpperCase()}</Header>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column textAlign='center'>
-              <Button onClick={()=>gameOver()}>Maybe You Should Go Outside?</Button>
             </Grid.Column>
           </Grid.Row>
         </Fragment>
