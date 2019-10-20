@@ -14,6 +14,7 @@ function App() {
   const [diffLvl, setDiffLvl] = useState(2)
   const [fetchErr, setFetchErr] = useState(false)
   const [modal, setModal] = useState(false)
+  const [woff, setWoff] = useState(false)
 
   useEffect(() => {
     fetch(PROXY+API+'?minlength=5&difficulty=2&count=40', {mode: 'cors',
@@ -83,11 +84,11 @@ function App() {
             <Grid.Column textAlign='center'>
               <Label color="red">You Lost :(</Label>
             </Grid.Column>
-            <TitlePage modal={modal} setModal={setModal} gameSettings={gameSettings} startGame={startGame} setDiffLvl={setDiffLvl} stillLoading={stillLoading} fetchErr={fetchErr} />
+            <TitlePage modal={modal} setModal={setModal} gameSettings={gameSettings} startGame={startGame} setDiffLvl={setDiffLvl} stillLoading={stillLoading} fetchErr={fetchErr} setWoff={setWoff}/>
           </Fragment>
         ) :
-        <GamePlay allWords={allWords} setLoseGame={setLoseGame} startGame={startGame} /> :
-        <TitlePage modal={modal} setModal={setModal} gameSettings={gameSettings} startGame={startGame} setDiffLvl={setDiffLvl} stillLoading={stillLoading} fetchErr={fetchErr} />
+        <GamePlay allWords={allWords} setLoseGame={setLoseGame} startGame={startGame} woff={woff}/> :
+        <TitlePage modal={modal} setModal={setModal} gameSettings={gameSettings} startGame={startGame} setDiffLvl={setDiffLvl} stillLoading={stillLoading} fetchErr={fetchErr} setWoff={setWoff}/>
       }
     </Grid>
   )

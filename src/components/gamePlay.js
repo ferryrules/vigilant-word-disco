@@ -4,8 +4,9 @@ import NextLevel from './nextLevel.js';
 import { Grid, Header, Form, Button } from 'semantic-ui-react'
 
 function GamePlay(props) {
-  const { allWords, setLoseGame, startGame} = props
+  const { allWords, setLoseGame, startGame, woff} = props
 
+  let woffArr = ['r', 's', 't', 'l', 'n', 'e']
   const [initGuess, setInitGuess] = useState('')
   const [goodGuess, setGoodGuess] = useState([])
   const [badGuess, setBadGuess] = useState([])
@@ -15,6 +16,12 @@ function GamePlay(props) {
   let level = winLvl
   const thisLvl = allWords[level-1].split('')
 
+  if (woff) {
+    woffArr.forEach(wa=>{
+      return thisLvl.includes(wa) ? goodGuess.push(wa) : null
+    })
+  }
+
   const uniqW = [...new Set(thisLvl)]
   const uniqG = [...new Set(goodGuess)]
   const uniqB = [...new Set(badGuess)]
@@ -22,7 +29,7 @@ function GamePlay(props) {
   const thisWord = thisLvl.map(w=>{
     return (
       <Grid.Column width={1} textAlign='center'>
-        {goodGuess.includes(w) ? w.toUpperCase() : '____'}
+        {goodGuess.includes(w) || woffArr.includes(w) ? w.toUpperCase() : '____'}
       </Grid.Column>
     )
   })
@@ -64,7 +71,7 @@ function GamePlay(props) {
     }
   }
 
-  const hintButton = hints === 0 ? 'disabled' : null
+  const hintButton = hints === 0 || woff ? 'disabled' : null
 
   console.log('CHEATER!!!');
   console.log('WE HAVE A CHEATER IN HERE!!!!');

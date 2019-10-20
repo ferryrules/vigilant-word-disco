@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react';
-import { Form, Button, Modal, Segment, Label, Grid, Icon, Header } from 'semantic-ui-react'
+import { Form, Button, Modal, Segment, Label, Grid, Icon, Header, Checkbox } from 'semantic-ui-react'
 
 function TitlePage(props) {
-  const { modal, setModal, diffLvl, gameSettings, startGame, setDiffLvl, stillLoading, fetchErr } = props
+  const { modal, setModal, diffLvl, gameSettings, startGame, setDiffLvl, stillLoading, fetchErr, setWoff } = props
 
   return (
     <Fragment>
@@ -52,6 +52,13 @@ function TitlePage(props) {
                 <Form.Input
                   placeholder='1 - 10' value={diffLvl}
                   onChange={e => setDiffLvl(e.target.value)}/>
+              </Segment>
+              <Segment textAlign='center'>
+                <Label attached='top' color='purple'>WofF Style: Every puzzle begins with 'R S T L N E' filled in for you. Hints will be disabled.</Label>
+                <br/>
+                <br/>
+                <br/>
+                <Checkbox onClick={e => setWoff(true)}/>
               </Segment>
               <Segment textAlign='center'>
                 <Button type='submit' onClick={()=>gameSettings()} color="purple">Submit</Button>
