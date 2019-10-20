@@ -25,7 +25,7 @@ function TitlePage(props) {
                   <br/>
                   Guess incorrectly 6 times and lose the game.
                   <br/>
-                  You get 3 hints to start & 1 for beating a level.
+                  3 hints to start & 1 when you win a level.
                   <br/>
                   Try to reach level 40.
                 </Header>

@@ -64,12 +64,13 @@ function GamePlay(props) {
   }
 
   const hintButton = hints === 0 ? 'disabled' : null
-  console.log(hints);
+
   console.log('CHEATER!!!');
   console.log('WE HAVE A CHEATER IN HERE!!!!');
   console.log("eh, it's fine");
   console.log('.....');
   console.log("it's " , allWords[winLvl-1]);
+  
   return (
     <Fragment>
       {(uniqW.sort().join('') === uniqG.sort().join('')) ? winLvl === 40 ? (
