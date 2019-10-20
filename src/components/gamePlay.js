@@ -72,7 +72,7 @@ function GamePlay(props) {
   console.log("it's " , allWords[winLvl-1]);
   return (
     <Fragment>
-      {(uniqW.sort().join('') === uniqG.sort().join('')) ? winLvl === 3 ? (
+      {(uniqW.sort().join('') === uniqG.sort().join('')) ? winLvl === 40 ? (
         <GameOver allWords={allWords} winLvl={winLvl} gameOver={gameOver} />
       ) : (
         <NextLevel allWords={allWords} winLvl={winLvl} youWin={youWin} />
