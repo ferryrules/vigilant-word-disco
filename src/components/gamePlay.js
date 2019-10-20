@@ -70,7 +70,7 @@ function GamePlay(props) {
   console.log("eh, it's fine");
   console.log('.....');
   console.log("it's " , allWords[winLvl-1]);
-  
+
   return (
     <Fragment>
       {(uniqW.sort().join('') === uniqG.sort().join('')) ? winLvl === 40 ? (
@@ -86,7 +86,7 @@ function GamePlay(props) {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column></Grid.Column>
-            {uniqB.length === 6 ?
+            {(6-uniqB.length <= 0) ?
               setLoseGame(true) :
               thisWord}
             <Grid.Column></Grid.Column>
