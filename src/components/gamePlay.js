@@ -9,12 +9,13 @@ function GamePlay(props) {
   const [badGuess, setBadGuess] = useState([])
 
   const [winLvl, setWinLvl] = useState(1)
-
   let level = winLvl
   const thisLvl = allWords[level-1].split('')
+
   const uniqW = [...new Set(thisLvl)]
   const uniqG = [...new Set(goodGuess)]
   const uniqB = [...new Set(badGuess)]
+
   const thisWord = thisLvl.map(w=>{
     return (
       <Grid.Column width={1} textAlign='center'>
@@ -112,7 +113,7 @@ function GamePlay(props) {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column textAlign='center'>
-              <Header as='h6'>{allWords[winLvl-1].toUpperCase()}</Header>
+              <Header as='h6'>The Word Was: {allWords[winLvl-1].toUpperCase()}</Header>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
