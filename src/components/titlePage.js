@@ -19,9 +19,9 @@ function TitlePage(props) {
               <Segment>
                 <Header as='h1' textAlign='center'>Instructions</Header>
                 <Header as='h5' textAlign='center'>
-                  Guess the word one letter at a time.
+                  Guess the word one or more letters at a time.
                   <br/>
-                  Guess correctly and advance to the next round.
+                  Find the word and advance to the next round.
                   <br/>
                   Guess incorrectly 6 times and lose the game.
                   <br/>

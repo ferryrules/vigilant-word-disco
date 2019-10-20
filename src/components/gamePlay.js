@@ -28,11 +28,16 @@ function GamePlay(props) {
 
   const myGuess = e => {
     let arr = e
+    console.log("e",e);
+    console.log("arr",arr);
+    // debugger
     arr.forEach(x=>{
       if (allWords[winLvl-1].includes(x)) {
-        setGoodGuess([...goodGuess, x])
+        goodGuess.push(x)
+        // return setGoodGuess([...goodGuess, x])
       } else {
-        setBadGuess([...badGuess, x.toUpperCase()])
+        badGuess.push(x.toUpperCase())
+        // return setBadGuess([...badGuess, x.toUpperCase()])
       }
     })
     setInitGuess('')
