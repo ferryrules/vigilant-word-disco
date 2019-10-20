@@ -43,6 +43,8 @@ function GamePlay(props) {
 
   const gameOver = () => {
     setWinLvl(1)
+    setBadGuess([])
+    setGoodGuess([])
     startGame()
   }
 
