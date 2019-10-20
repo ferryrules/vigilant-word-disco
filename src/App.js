@@ -83,7 +83,6 @@ function App() {
             <Grid.Column textAlign='center'>
               <Label color="red">You Lost :(</Label>
             </Grid.Column>
-            modal, setModal, diffLvl, gameSettings, startGame, setDiffLvl, stillLoading, fetchErr
             <TitlePage modal={modal} setModal={setModal} gameSettings={gameSettings} startGame={startGame} setDiffLvl={setDiffLvl} stillLoading={stillLoading} fetchErr={fetchErr} />
           </Fragment>
         ) :
