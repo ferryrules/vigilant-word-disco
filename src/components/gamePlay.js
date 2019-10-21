@@ -15,7 +15,7 @@ function GamePlay(props) {
   const [winLvl, setWinLvl] = useState(1)
   let level = winLvl
   const thisLvl = allWords[level-1].split('')
-
+  console.log(woff);
   if (woff) {
     woffArr.forEach(wa=>{
       return thisLvl.includes(wa) ? goodGuess.push(wa) : null
@@ -29,7 +29,7 @@ function GamePlay(props) {
   const thisWord = thisLvl.map(w=>{
     return (
       <Grid.Column width={1} textAlign='center'>
-        {goodGuess.includes(w) || woffArr.includes(w) ? w.toUpperCase() : '____'}
+        {goodGuess.includes(w) || (woffArr.includes(w) && woff) ? w.toUpperCase() : '____'}
       </Grid.Column>
     )
   })
