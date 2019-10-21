@@ -122,8 +122,8 @@ function GamePlay(props) {
           </Grid.Row>
             <Grid.Row>
               <Grid.Column textAlign='center'>
-                <Header as={6-badGuess.length === 1 ? 'h1' : 'h3'} color={6-badGuess.length === 1 ? 'red' : 'green'}>
-                  You Have {6-badGuess.length} {6-badGuess.length === 1 ? 'Guess' : 'Guesses'} Remaining
+                <Header as={6-uniqB.length === 1 ? 'h1' : 'h3'} color={6-uniqB.length === 1 ? 'red' : 'green'}>
+                  You Have {6-uniqB.length} {6-uniqB.length === 1 ? 'Guess' : 'Guesses'} Remaining
                 </Header>
               </Grid.Column>
           </Grid.Row>
