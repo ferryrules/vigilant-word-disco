@@ -3,11 +3,11 @@ import YouWin from './youWin.js'
 import { Grid, Button } from 'semantic-ui-react'
 
 function NextLevel(props) {
-  const {allWords, winLvl, youWin} = props
+  const {allWords, thisLvl, youWin} = props
 
   return (
     <Fragment>
-      <YouWin allWords={allWords} winLvl={winLvl} />
+      <YouWin allWords={allWords} thisLvl={thisLvl} />
       <Grid.Row>
         <Grid.Column textAlign='center'>
           <Button onClick={()=>youWin()}>Continue</Button>

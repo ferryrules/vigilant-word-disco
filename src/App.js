@@ -17,7 +17,7 @@ function App() {
   const [woff, setWoff] = useState(false)
 
   useEffect(() => {
-    fetch(PROXY+API+'?minlength=5&difficulty=2&count=40', {mode: 'cors',
+    fetch(PROXY+API+'?minlength=5&difficulty=2&count=400', {mode: 'cors',
       header: {
         'Accept': 'text/html',
         'Content-Type': 'text/html'

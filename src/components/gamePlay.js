@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from 'react';
+import React, {useEffect, useState, Fragment} from 'react';
 import GameOver from './gameOver.js';
 import NextLevel from './nextLevel.js';
 import { Grid, Header, Form, Button } from 'semantic-ui-react'
@@ -12,21 +12,21 @@ function GamePlay(props) {
   const [badGuess, setBadGuess] = useState([])
   const [hints, setHints] = useState(3)
 
-  const [winLvl, setWinLvl] = useState(1)
-  let level = winLvl
-  const thisLvl = allWords[level-1].split('')
-  console.log(woff);
-  if (woff) {
-    woffArr.forEach(wa=>{
-      return thisLvl.includes(wa) ? goodGuess.push(wa) : null
-    })
-  }
+  const [thisLvl, setThisLvl] = useState(1)
+  let level = thisLvl
+  const thisLvlWord = allWords[level-1].split('')
 
-  const uniqW = [...new Set(thisLvl)]
+  const uniqW = [...new Set(thisLvlWord)]
   const uniqG = [...new Set(goodGuess)]
   const uniqB = [...new Set(badGuess)]
 
-  const thisWord = thisLvl.map(w=>{
+  if (woff) {
+    woffArr.forEach(wa=>{
+      return thisLvlWord.includes(wa) ? goodGuess.push(wa) : null
+    })
+  }
+
+  const thisWord = thisLvlWord.map(w=>{
     return (
       <Grid.Column width={1} textAlign='center'>
         {goodGuess.includes(w) || (woffArr.includes(w) && woff) ? w.toUpperCase() : '____'}
@@ -37,7 +37,7 @@ function GamePlay(props) {
   const myGuess = e => {
     let arr = e
     arr.forEach(x=>{
-      if (allWords[winLvl-1].includes(x)) {
+      if (allWords[thisLvl-1].includes(x)) {
         goodGuess.push(x)
       } else {
         badGuess.push(x.toUpperCase())
@@ -49,12 +49,12 @@ function GamePlay(props) {
   const youWin = () => {
     setBadGuess([])
     setGoodGuess([])
-    setWinLvl(winLvl+1)
+    setThisLvl(thisLvl+1)
     setHints(hints+1)
   }
 
   const gameOver = () => {
-    setWinLvl(1)
+    setThisLvl(1)
     setHints(3)
     setBadGuess([])
     setGoodGuess([])
@@ -65,31 +65,31 @@ function GamePlay(props) {
     setHints(hints-1)
     for (var i = 0; i < uniqW.length; i++) {
       if (!uniqG.includes(uniqW[i])) {
-        console.log(uniqW[i]);
         return goodGuess.push(uniqW[i])
       }
     }
   }
 
   const hintButton = hints === 0 || woff ? 'disabled' : null
-
-  console.log('CHEATER!!!');
-  console.log('WE HAVE A CHEATER IN HERE!!!!');
-  console.log("eh, it's fine");
-  console.log('.....');
-  console.log("it's " , allWords[winLvl-1]);
+  useEffect(() => {
+    console.log('CHEATER!!!');
+    console.log('WE HAVE A CHEATER IN HERE!!!!');
+    console.log("eh, it's fine");
+    console.log('.....');
+    console.log("it's " , allWords[thisLvl-1]);
+  },[allWords, thisLvl])
 
   return (
     <Fragment>
-      {(uniqW.sort().join('') === uniqG.sort().join('')) && (uniqB.length < 6) ? winLvl === 40 ? (
-        <GameOver allWords={allWords} winLvl={winLvl} gameOver={gameOver} />
+      {(uniqW.join('') === uniqG.join('')) && (uniqB.length < 6) ? thisLvl === 40 ? (
+        <GameOver allWords={allWords} thisLvl={thisLvl} gameOver={gameOver} />
       ) : (
-        <NextLevel allWords={allWords} winLvl={winLvl} youWin={youWin} />
+        <NextLevel allWords={allWords} thisLvl={thisLvl} youWin={youWin} />
       ) : (
         <Fragment>
           <Grid.Row textAlign='center'>
             <Grid.Column textAlign='center'>
-              <Header as='h1'>LEVEL: {`${winLvl}`}</Header>
+              <Header as='h1'>LEVEL: {`${thisLvl}`}</Header>
               {woff ? <Header as='h5' color='blue'>W of F enabled. RSTLNE filled in. Hints disabled</Header> : null}
             </Grid.Column>
           </Grid.Row>

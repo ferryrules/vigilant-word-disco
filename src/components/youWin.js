@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import { Grid, Header} from 'semantic-ui-react'
 
 function YouWin(props) {
-  const {allWords, winLvl} = props
+  const {allWords, thisLvl} = props
 
   return (
     <Fragment>
@@ -13,7 +13,7 @@ function YouWin(props) {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column textAlign='center'>
-          <Header as='h6'>The Word Was: {allWords[winLvl-1].toUpperCase()}</Header>
+          <Header as='h6'>The Word Was: {allWords[thisLvl-1].toUpperCase()}</Header>
         </Grid.Column>
       </Grid.Row>
     </Fragment>
