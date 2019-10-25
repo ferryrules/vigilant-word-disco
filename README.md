@@ -1,5 +1,35 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Word guessing game
+Please implement a word guessing game, which can be played by a user "against" the computer. This is a game where the secret-keeper (in this case, the computer) thinks of a word, and the guesser (the user) tries to guess it one letter at a time. The guesser has six guesses. If the guesser guesses a letter which is part of the word, the secret-keeper will reveal all occurrences of that letter in the word. If the guesser guesses a correct letter such that all letters are now revealed, the game is over and player 2 has won. Instead if player 2 runs out of guesses before the whole word is discovered, the game is over and player 1 has won. Check out https://en.wikipedia.org/wiki/Hangman_(game) for more details.
+### Game rules
+- At the start of the game the computer/secret-keeper will choose a dictionary word
+- The guesser loses the game if they guess 6 letters that are not in the secret word
+- The guesser wins the game if they guess all letters in the secret word correctly and have
+not already lost the game per the conditions above
+### User Interface
+Any type of user interface is acceptable (command line, mobile app, web page etc) but the player must have a way of interacting with your game including:
+- The length of the secret word is displayed to the guesser (e.g. as a set of underscores)
+- As the guesser makes correct guesses, occurrences of the guessed letter in the word
+are shown while unknown letters are still hidden
+- The number of guesses remaining is displayed
+- A list of incorrect guesses are displayed
+### Implementation
+- Your program must retrieve a dictionary list of words from the word dictionary REST API provided (see attached documentation)
+- You can choose whichever combination of programming languages, tools, frameworks, and libraries you find appropriate within reason (e.g. you can’t use a game framework that implements Hangman)
+ 
+### Extension
+Apart from the above requirements, everything else is up to you. We also encourage you to think of these requirements as a starting point, and just use your creativity/imagination to expand the game in any way that you want to showcase your talents and passion for programming. Sample extension ideas include:
+- Track users/scores over time and show a leaderboard
+- Add support for guessing full words instead of just letters one at a time, and count those
+against the guesses total
+- Add support for phrases instead of just words, and numbers in addition to letters
+- Create a diagram (that can be drawn with 6 attempt) that gets filled in as the user
+guesses incorrectly
+- Add a configurable “difficulty level” and adjust the words that are used based on the
+user’s preference
+- Anything else that you come up with to make the game more fun/interesting!
+
 ## Available Scripts
 
 In the project directory, you can run:
