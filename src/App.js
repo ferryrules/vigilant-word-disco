@@ -4,8 +4,8 @@ import TitlePage from './components/titlePage.js';
 import GamePlay from './components/gamePlay.js';
 import { Grid, Icon, Header, Label } from 'semantic-ui-react'
 
-const PROXY = 'https://cors-anywhere.herokuapp.com/'
-const API = 'http://app.linkedin-reach.io/words'
+// const PROXY = 'https://cors-anywhere.herokuapp.com/'
+const API = 'https://random-word-api.herokuapp.com/'
 
 function App() {
   const [allWords, setAllWords] = useState([])
@@ -17,14 +17,11 @@ function App() {
   const [woff, setWoff] = useState(false)
 
   useEffect(() => {
-    fetch(PROXY+API+'?minlength=5&difficulty=2&count=400', {mode: 'cors',
-      header: {
-        'Accept': 'text/html',
-        'Content-Type': 'text/html'
-      }})
-    .then(r=>r.text())
+    fetch(API + 'all', {
+      methods: 'GET'})
+    .then(r=>r.json())
     .then(words=>{
-      setAllWords(words.split('\n'))
+      setAllWords(words)
     })
     .catch(err=>{
       setFetchErr(true)
@@ -32,7 +29,7 @@ function App() {
   }, [])
 
   let maxlength = 0
-  let minlength = 100
+  let minlength = 2**31
   allWords.forEach(w=>{
     if (w.length > maxlength) {
       maxlength = w.length
@@ -53,10 +50,10 @@ function App() {
 
   const gameSettings = async(e) => {
     paramSettings()
-    let PARAMETERS = '?' + paramArr.join('&')
-    const text = await fetch(PROXY+API+PARAMETERS)
-      .then(r=>r.text())
-    let newWords = text.split(`\n`)
+    // let PARAMETERS = '?' + paramArr.join('&')
+    // const text = await fetch(API)
+    //   .then(r=>r.text())
+    let newWords = allWords
     setAllWords(Array.from({length: 40}, () => newWords[Math.floor(Math.random() * newWords.length)]))
     setModal(false)
   }
@@ -68,6 +65,7 @@ function App() {
   }
 
   return (
+    // <h1>Header</h1>
     <Grid padded columns='equal'>
       <Grid.Row>
       </Grid.Row>
